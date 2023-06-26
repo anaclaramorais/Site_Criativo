@@ -1,0 +1,542 @@
+/*Define cores dos elementos no modo claro e escuro da pagina atraves da criação de variáveis css no root.
+O modo escuro é ativado quando o input do "botão" for clicado (checked) */
+#dark,
+
+:root:has(#dark:checked)
+{
+    --bg-color: black;
+    --bg-colorBotao: #EA4C89;
+    --loginColor: #a9a9a9;
+    --textoCanto: white;
+    --bg-colorHeader: #1c1b1b;
+    --text-MainLastPage: rgb(201, 201, 201);
+    --botaoPlaylistNormal: #333;
+    --botaoPlaylistHover: #555;
+}
+
+#light,
+:root
+{
+    --bg-color:#eeececfc;
+    --bg-colorBotao: #f780ad;
+    --loginColor: #474747;
+    --textoCanto: rgb(166, 166, 166);
+    --bg-colorHeader: #e9e6e6fc;
+    --text-MainLastPage: rgb(93, 93, 93);
+    --botaoPlaylistNormal: rgb(100, 100, 100);
+    --botaoPlaylistHover: #898989;
+}
+
+/* Botao para modo claro e escuro -> modelo foi feito baseado no modelo #54 do site  https://getcssscan.com/css-checkboxes-examples?ref=beautifulboxshadow-bottom */
+.modoClaro_Escuro input[type="checkbox"] 
+{
+    visibility: hidden;
+    display: none;
+}
+
+.modoClaro_Escuro *,
+.modoClaro_Escuro::after,
+.modoClaro_Escuro::before 
+{
+    box-sizing: border-box;
+}
+
+.modoClaro_Escuro .switch 
+{
+    --width-of-switch: 3.5em;
+    --height-of-switch: 2em;
+    --size-of-icon: 1.4em;
+    --slider-offset: 0.3em;
+    position: relative;
+    width: var(--width-of-switch);
+    height: var(--height-of-switch);
+    display: inline-block;
+    margin-top: 39%;
+}
+
+.modoClaro_Escuro .slider 
+{
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #f4f4f5;
+    transition: .4s;
+    border-radius: 30px;
+}
+
+.modoClaro_Escuro .slider:before 
+{
+    position: absolute;
+    content: "";
+    height: var(--size-of-icon, 1.4em);
+    width: var(--size-of-icon, 1.4em);
+    border-radius: 20px;
+    left: var(--slider-offset, 0.3em);
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(40deg, #ff0080, #ff8c00 70%);
+    transition: .4s;
+}
+
+.modoClaro_Escuro input:checked+.slider 
+{
+    background-color: #303136;
+}
+
+.modoClaro_Escuro input:checked+.slider:before 
+{
+    left: calc(100% - (var(--size-of-icon, 1.4em) + var(--slider-offset, 0.3em)));
+    background: #303136;
+    /* muda o valor do segundo inset no box shadow pra mudar o angulo de direcao da lua*/
+    box-shadow: inset -3px -2px 5px -2px #8983f7, inset -10px -4px 0 0 #a3dafb;
+}
+
+/*/Ids e classes para pagina inicial*/
+#fundo
+{
+  background-color: var(--bg-color);
+}
+
+#logo 
+{
+  width: auto;
+  display: block;
+  margin-top: 11%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 650px;
+  height: 650px;
+}
+
+.botaoEntrar 
+{
+  align-items: center;
+  background-color: var(--bg-colorBotao);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: .25rem;
+  box-shadow: rgba(205, 203, 203, 0.411) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: rgba(205, 203, 203, 0.411) 0 1px 3px 0;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  min-height: 3rem;
+  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  transition: all 250ms;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+  margin-left: 2275px;
+  margin-top: -37%;
+  margin-right: 9px;
+  position: absolute;
+  border-radius: 80px;
+}
+
+.botaoEntrar:hover,
+.botaoEntrar:focus
+{
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.botaoEntrar:hover 
+{
+  transform: translateY(-1px);
+}
+
+.botaoEntrar:active 
+{
+  background-color: var(--bg-colorBotao);
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+  color: rgba(0, 0, 0, 0.65);
+  transform: translateY(0);
+}
+
+/*/Ids e classes para segunda pagina*/
+.login-form 
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  justify-content: center;
+  border: var(--bg-colorBotao);
+}
+
+.login_header 
+{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.login_header img 
+{
+  width: 30%;
+}
+
+.login_header h1 
+{
+  color: var(--loginColor);
+  font-size: 1.5em;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.login_input 
+{
+  border-radius: 8px;
+  color: var(--loginColor);
+  font-size: 1em;
+  margin-bottom: 15px;
+  width: 255%;
+  max-width: 255px;
+  outline: none;
+  padding: 15px;
+}
+
+.login_button 
+{
+  background-color: var(--bg-colorBotao);
+  padding: 15px;
+  border-radius: 20rem;
+  cursor: pointer;
+  font-size: 1em;
+  width: 125px;
+  max-width: 125px;
+  border: none;
+}
+
+.login_button:hover 
+{
+  background-color: #dd93b0;
+}
+
+a 
+{
+  text-decoration: none;
+  color: var(--bg-color);
+}
+
+
+/*/Ids e classes para pagina principal*/
+
+#logoCanto 
+{
+  width: 6%;
+  height: 10%;
+  margin: left 10px;
+  ;
+}
+
+#textoCanto 
+{
+  color: var(--textoCanto);
+  font-family: cursive;
+  margin: 2%;
+  position: absolute;
+  left: 4%;
+  top: 1%;
+}
+
+.botaoPlaylist 
+{
+  border: none;
+  cursor: pointer;
+  height: 32px;
+  width: 120px;
+  color: var(--bg-color);
+  background-color: var(--bg-colorBotao);
+}
+
+.botaoPlaylist:hover 
+{
+  border: none;
+  cursor: pointer;
+  height: 32px;
+  width: 120px;
+  background-color: #dd93b0;
+}
+.Squar1{
+  display: none;
+ height: 370px;
+ width: 370px;
+ background-color: #1c1b1b;
+ border-radius: 40px;
+ margin-left: 10%;
+ margin-top: -40%;
+
+}
+.Squar2{
+  margin-top: 10%;
+  border-radius: 40px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  height: 270px;
+  width: 370px;
+  background-image: url(imgs/Photo_Rihanaa.jpg);
+  background-size: 100%;
+
+ }
+
+.Class_Music_Img{
+  height: 120px;
+  width: 120px;
+  margin-top: -25%;
+  margin-left: -5%;
+}
+
+.PLAY{
+  margin-top: 7%;
+  margin-left: 25%;
+  width: 265px;
+}
+.Squar3{
+  display: none;
+ height: 370px;
+ width: 370px;
+ background-color: #1c1b1b;
+ border-radius: 40px;
+ margin-left: 10%;
+ margin-top: -40%;
+
+}
+.Squar4{
+  margin-top: 10%;
+  border-radius: 40px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  height: 270px;
+  width: 370px;
+  background-image: url(imgs/photo_Summer.png);
+  background-size: 100%;
+
+ }
+
+.Class_Musicc_Img{
+  height: 120px;
+  width: 120px;
+  margin-top: -25%;
+  margin-left: -5%;
+}
+
+.PLAYY{
+  margin-top: 7%;
+  margin-left: 25%;
+  width: 265px;
+}
+.Squar5{
+  display: none;
+ height: 370px;
+ width: 370px;
+ background-color: #1c1b1b;
+ border-radius: 40px;
+ margin-left: 10%;
+ margin-top: -40%;
+
+}
+.Squar6{
+  margin-top: 10%;
+  border-radius: 40px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  height: 270px;
+  width: 370px;
+  background-image: url(imgs/photo_SZA.png);
+  background-size: 100%;
+
+ }
+
+.Class_Musiccc_Img{
+  height: 120px;
+  width: 120px;
+  margin-top: -25%;
+  margin-left: -5%;
+}
+
+.PLAYYY{
+  margin-top: 7%;
+  margin-left: 25%;
+  width: 265px;
+}
+.Squar7{
+  display: none;
+ height: 370px;
+ width: 370px;
+ background-color: #1c1b1b;
+ border-radius: 40px;
+ margin-left: 10%;
+ margin-top: -40%;
+
+}
+.Squar8{
+  margin-top: 10%;
+  border-radius: 40px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  height: 270px;
+  width: 370px;
+  background-image: url(imgs/Photo_Ciara.jpg.crdownload);
+  background-size: 100%;
+
+ }
+
+.Class_Musicccc_Img{
+  height: 120px;
+  width: 120px;
+  margin-top: -25%;
+  margin-left: -5%;
+}
+
+.PLAYYYY{
+  margin-top: 7%;
+  margin-left: 25%;
+  width: 265px;
+}
+.Squar9{
+  display: none;
+ height: 370px;
+ width: 370px;
+ background-color: #1c1b1b;
+ border-radius: 40px;
+ margin-left: 10%;
+ margin-top: -40%;
+
+}
+.Squar10{
+  margin-top: 10%;
+  border-radius: 40px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  height: 270px;
+  width: 370px;
+  background-image: url(imgs/Photo_CrisBrown.jpg);
+  background-size: 100%;
+
+ }
+
+.Class_Musiccccc_Img{
+  height: 120px;
+  width: 120px;
+  margin-top: -25%;
+  margin-left: -5%;
+}
+
+.PLAYYYYY{
+  margin-top: 7%;
+  margin-left: 25%;
+  width: 265px;
+}
+.Squar11{
+  display: none;
+ height: 370px;
+ width: 370px;
+ background-color: #1c1b1b;
+ border-radius: 40px;
+ margin-left: 10%;
+ margin-top: -40%;
+
+}
+.Squar12{
+  margin-top: 10%;
+  border-radius: 40px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  height: 270px;
+  width: 370px;
+  background-image: url(imgs/photo_MuniLong.png);
+  background-size: 100%;
+
+ }
+
+.Class_Musicccccc_Img{
+  height: 120px;
+  width: 120px;
+  margin-top: -25%;
+  margin-left: -5%;
+}
+
+.PLAYYYYYY{
+  margin-top: 7%;
+  margin-left: 25%;
+  width: 265px;
+}
+
+/*formulario cantor*/
+body 
+{
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f2f2;
+}
+
+header 
+{
+  background-color: #EA4C89;
+  color: #fff;
+  padding: 55px;
+  text-align: center;
+}
+
+h1 
+{
+  margin: 0;
+}
+
+.container 
+{
+  max-width: 900px;
+  margin: 65px auto;
+  background-color: #fff;
+  padding: 90px;
+  border-radius: 25px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+form 
+{
+  margin-top: 20px;
+}
+
+label 
+{
+  display: block;
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+textarea 
+{
+  width: 98%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+input[type="submit"] 
+{
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover 
+{
+  background-color: #EA4C89;
+}
+
